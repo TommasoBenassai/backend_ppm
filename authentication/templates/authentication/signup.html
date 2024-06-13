@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrazione</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrazione</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+</head>
+<body style="background: #CFE8CF">
+    <h1>Registrazione</h1>
+    <form method="POST" action="{% url 'signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Registrati</button>
+        {% if form.errors %}
+        <p class="error-message">Errore nella compilazione del form o della password.</p>
+      {% endif %}
+    </form>
+</body>
+</html>
+

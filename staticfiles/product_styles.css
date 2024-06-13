@@ -1,0 +1,165 @@
+/* product_styles.css */
+body{
+  background-color: #f2f2f2;
+  }
+/* Stile per l'h1 */
+h1 {
+    color: Green;
+    text-align: center;
+    background-color: #ccc;
+    padding: 10px;
+    margin: 0;
+    font-size: 50px;
+}
+
+/* Stile per il link "Vedi carrello" e "Dettagli" */
+a {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    background-color: #4caf50;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Aggiunta transizione per una transizione più fluida */
+    border: 2px solid transparent; /* Aggiunta del bordo trasparente */
+    box-sizing: border-box; /* Assicura che il bordo rientri nelle dimensioni totali del link */
+
+}
+
+a:hover {
+    background-color: #ccc;
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+a.view_cart {
+    left: 7%;
+    top: -50px;
+    position: relative;
+}
+
+
+/* Stile per le categorie */
+h2 {
+    font-size: 34px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+/* Stile per le righe di prodotti */
+.categories-container {
+    padding: 0;
+}
+
+.product-row {
+    display: flex;
+    overflow-x: scroll;
+    padding: 0;
+    margin: 10px 100px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.product-row li {
+    flex: 0 0 auto;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 200px;
+}
+
+/* Stile per gli elementi all'interno delle righe con la barra di scorrimento */
+.product-row.has-scrollbar li {
+    left: 13%;
+    position: relative;
+}
+
+/* Stile per il nome del prodotto */
+.product-row h3 {
+    font-size: 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Stile per il prezzo del prodotto */
+.product-row .price {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Aggiungi spazio tra il box "Dettagli" e il prezzo */
+.product-row a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    background-color: #4caf50;
+    text-decoration: none;
+}
+
+.product-row a:hover {
+    background-color: #fff;
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+/* Rimuovi puntini elenco */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Stile per l'immagine del prodotto */
+.product-row .product-image {
+    margin-bottom: 10px;
+}
+
+.product-row .product-image img {
+    border-radius: 10px;
+}
+
+/* Rimuovi spaziature bianche */
+body {
+    margin: 0;
+}
+
+/* Nascondi barra di scorrimento orizzontale */
+.product-row::-webkit-scrollbar {
+    display: none;
+}
+
+/* Stile per il pulsante di scorrimento */
+.scroll-button {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.scroll-button-left {
+    left: 10px;
+}
+
+.scroll-button-right {
+    right: 10px;
+}

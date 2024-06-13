@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #cfe8cf;
+  position: relative;
+    top: 70px;
+}
+
+/* Contenitore principale */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Stile per l'immagine */
+.container img {
+  margin-top: 70px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.product-image {
+    max-width: 300px;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/* Stile per l'h1 */
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Stile per i paragrafi */
+p {
+  margin-bottom: 10px;
+  font-size: 27px;
+}
+
+/* Stile per il prezzo */
+p.price {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+

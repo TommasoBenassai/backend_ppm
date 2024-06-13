@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dettagli Categoria</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'category.css' %}">
+    <style>
+body {
+  background-color: #cfe8cf;
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+  color: #000;
+}
+
+.product-container {
+  display: flex;
+  padding: 0;
+  margin: 10px 0;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.product-container li {
+  flex: 0 0 auto;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  text-align: center;
+  min-width: 200px;
+  left: 2%;
+  position: relative;
+}
+
+.product-container h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.product-container .price {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.product-container a {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  background-color: #4caf50;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid white;
+  border-color: #4caf50;
+  box-sizing: border-box;
+}
+
+.product-container a:hover {
+  background-color: #cfe8cf;
+  color: #4caf50;
+  border-color: #4caf50;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-container .product-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.product-container .product-image {
+  margin-bottom: 10px;
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.6s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.07);
+}
+
+a#prodotti_link {
+  margin-top: 0px;
+  text-decoration: none;
+  font-size: 0px;
+  color: none;
+  background-color: #cfe8cf !important;
+  padding: 0px 0px;
+  border-radius: 4px;
+  margin-left: 0px;
+  border: 0px solid white;
+}
+
+a#prodotti_link:hover {
+  background-color: none !important;
+  color: none !important;
+  border-color: none !important;
+}
+
+a.view_all {
+  position: relative;
+  top: -10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: black;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: none;
+
+  box-sizing: border-box;
+}
+
+a.view_all:hover {
+  background-color: #cfe8cf !important;
+  color: black;
+  border:none;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
+}
+</style>
+
+</head>
+<body>
+        <h1>{{ category.name }}
+        <a class="view_all" href="{% url 'product_list' %}">Torna ai prodotti</a></h1>
+
+    <ul class="product-container">
+        {% for product in category.product_set.all %}
+                        <li>
+                            <div class="product-box">
+                                <div class="product-image">
+                                        <a id="prodotti_link" href="{% url 'product_detail' product.id %}"><img class="product-image" src="{{ product.image.url }}" alt="Product Image"> </a>
+
+
+                                </div>
+                                <h3 >{{ product.name }}</h3>
+                                <p class="price">Prezzo: {{ product.price }} €</p>
+                                <a href="{% url 'product_detail' product.id %}">Dettagli</a>
+                            </div>
+                        </li>
+                {% empty %}
+                        <li>Nessun prodotto disponibile.</li>
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

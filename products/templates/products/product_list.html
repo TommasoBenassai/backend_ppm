@@ -1,0 +1,704 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista dei prodotti</title>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'product_styles.css' %}">-->
+    <script>
+function menuOnClick() {
+    document.getElementById("menu-bar").classList.toggle("change");
+    document.getElementById("nav").classList.toggle("change");
+    document.getElementById("menu-bg").classList.toggle("change-bg");
+    document.getElementById("blurr").classList.toggle("change-blurr");
+}
+        
+document.addEventListener('DOMContentLoaded', function() {
+  const searchIcon = document.getElementById('search-icon');
+  const searchInput = document.getElementById('search-input');
+
+  // Aggiungi un ascoltatore di eventi per l'evento keyup sul campo di input
+  searchInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      performSearch();
+    }
+  });
+
+  // Aggiungi un ascoltatore di eventi per l'evento click sull'icona di ricerca
+  searchIcon.addEventListener('click', function() {
+    performSearch();
+  });
+
+  function performSearch() {
+    const searchTerm = searchInput.value.trim();
+
+    if (searchTerm !== '') {
+      // Effettua una richiesta AJAX per ottenere l'URL dei dettagli del prodotto corrispondente al termine di ricerca
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', '/search-product?search=' + encodeURIComponent(searchTerm), true);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          const productDetailURL = response.productDetailURL;
+
+          if (productDetailURL) {
+            // Reindirizza l'utente alla pagina dei dettagli del prodotto
+            window.location.href = productDetailURL;
+          } else {
+            // Stampa un messaggio se il prodotto non esiste
+            alert('Il prodotto cercato non esiste.');
+          }
+        } else if (xhr.readyState === 4) {
+          // Stampa un messaggio se si verifica un errore durante la richiesta
+          alert('Si è verificato un errore durante la richiesta.');
+        }
+      };
+      xhr.send();
+    }
+  }
+});
+</script>
+
+    <style>
+body {
+  background-color: #CFE8CF;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  color: #f8f7f7;
+  text-align: center;
+  background-color: black;
+  padding: 10px;
+  margin: 0;
+  font-size: 50px;
+}
+
+#icona_1{
+display: none;}
+#icona_2{
+display: none;}
+
+#icona_3{
+display: none;}
+
+a.view_cart {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: #4caf50;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid white;
+  box-sizing: border-box;
+}
+
+a.view_cart:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border-color: #fff;
+}
+
+a#prodotti_link{
+  margin-top: 0px;
+  text-decoration: none;
+  font-size: 0px;
+  color: none;
+  background-color: #cfe8cf !important;
+  padding: 0px 0px;
+  border-radius: 4px;
+  margin-left: 0px;
+  border: 0px solid white;
+}
+a#prodotti_link:hover {
+  background-color: none !important;
+  color: none !important;
+  border-color: none !important;
+}
+
+a.view_cart {
+  left: 7%;
+  top: -50px;
+  position: relative;
+}
+
+h2 {
+  font-size: 34px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  left: 40%;
+}
+
+a.view_all {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  position: relative;
+  left: 40%;
+  top: -5px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: black;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid white;
+  border:none;
+  box-sizing: border-box;
+}
+a.view_all:hover {
+  background-color: #cfe8cf !important;
+  color: black;
+    text-decoration: underline;
+
+}
+
+.categories-container {
+  padding: 0;
+}
+
+.product-row {
+  display: flex;
+  padding: 0;
+  margin: 10px 0;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f2f2f2;
+}
+
+.product-row li {
+  flex: 0 0 auto;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  text-align: center;
+  min-width: 200px;
+  left: 2%;
+  position: relative;
+}
+
+.product-row h3 {
+    font-size: 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.product-row .price {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.product-row a {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: white;
+  background-color: #4CAF50;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 10px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid #4CAF50;
+  box-sizing: border-box;
+}
+
+.product-row a:hover {
+  background-color: #cfe8cf;
+  color: #4CAF50;
+
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-row .product-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-row .product-image {
+  margin-bottom: 10px;
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.6s ease;
+}
+
+.product-image:hover{
+transform: scale(1.07);
+}
+
+.product-row::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-button {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.scroll-button-left {
+  left: 10px;
+}
+
+.scroll-button-right {
+  right: 10px;
+}
+
+@media (max-width: 1217px){
+h1{
+left: 150px;
+position: relative;
+}
+h1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 100%;
+  background-color: #4caf50;
+  z-index: -1;
+}
+.input-container {
+  width: 180px !important;
+  left: 80% !important;
+}
+}
+@media (max-width: 864px){
+h1{
+font-size: 30px;
+left: 100px !important;           
+}
+.input{
+height: 10px !important;
+}
+.input-container {
+  width: 100px !important;
+  left: 80% !important;
+  top: -65px !important;
+}
+
+#menu{
+    top: -10px !important;
+    position: relative;
+}
+
+#icona_1{
+display: initial;}
+#icona_2{
+display: initial;}
+#icona_3{
+display: initial;}
+
+a.view_cart{
+visibility: hidden;
+top: -40px;
+}
+.view_cart #icona_1 {
+    font-size: 20px;
+    visibility: visible;
+    background-color: #4caf50;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid white;
+  box-sizing: border-box;
+  position: relative;
+  right: 7%;
+  }
+  a.view_cart #icona_1:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border-color: #fff;
+}
+
+.view_cart #icona_2 {
+    font-size: 20px;
+    visibility: visible;
+    background-color: #4caf50;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid white;
+  box-sizing: border-box;
+  position: relative;
+  right: 130px;
+  }
+  a.view_cart #icona_2:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border-color: #fff;
+}
+
+.view_cart #icona_3 {
+    font-size: 20px;
+    visibility: visible;
+    background-color: #4caf50;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid white;
+  box-sizing: border-box;
+  position: relative;
+  right: 130px;
+  }
+
+  a.view_cart #icona_3:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border-color: #fff;
+}
+
+}
+
+
+
+footer {
+    padding: 20px 10px;
+}
+.footer-links, .social-links {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 2.3%;
+}
+.footer-links ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.footer-links li {
+    padding: 5px;
+}
+.footer-links li a {
+    background: none;
+    border: none;
+    color: #000;
+    text-decoration: none;
+    font-size: 20px;
+}
+.footer-links li a:hover {
+    color: #4caf50;
+}
+.footer-links .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: grey;
+}
+.footer-links li:last-child a {
+    color: black;
+    font-weight: bold;
+}
+.footer-links li:last-child a:hover {
+    color: #4caf50;
+}
+.social-links {
+    padding: 20px 0;
+}
+.fa-brands, .fab {
+    font-size: 22px;
+    margin: 10px;
+}
+.social-links li a, .social-links li a:visited {
+    color: #4caf50;
+    background: none;
+    border: none;
+}
+footer p {
+    margin-left: 5px;
+    color: #4A4A4A;
+    font-size: 14px;
+    position: relative;
+    left: 2.3%;
+}
+
+
+
+
+
+#menu{
+    z-index: 3;
+}
+#menu-bar{
+    width: 45px;
+    height: 40px;
+    margin: 30px 0 20px 20px;
+    cursor: pointer;
+}
+.bar{
+    height: 5px;
+    width: 100%;
+    background-color: white;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+#bar1{
+    transform: translateY(-4px);
+}
+#bar3{
+    transform: translateY(-4px);
+}
+.nav{
+    transition: 0.3s ease;
+    display: none;
+}
+.nav ul{
+    padding: 0 22px;
+}
+.nav li{
+    list-style: none;
+    padding: 12px 0;
+}
+a.menu-li{
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: trasparent;
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-left: 10px;
+  transition: none;
+}
+
+
+.nav li a:hover{
+    font-weight: bold !important;
+}
+.menu-bg, #menu{
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.menu-bg{
+    z-index: 2;
+    width: 0;
+    height: 0;
+    margin: 30px 0 20px 20px;
+    background: radial-gradient(circle, #7c8c12, #128a18);
+    border-radius: 50%;
+    transition: 0.3s ease;
+}
+.change{
+    display: block;
+}
+.change .bar{
+    background-color: white;
+}
+.change #bar1{
+    transform: translateY(4px) rotateZ(-45deg);
+}
+.change #bar2{
+    opacity: 0;
+}
+.change #bar4{
+    opacity: 0;
+}
+.change #bar3{
+    transform: translateY(-6px) rotateZ(45deg);
+}
+.change-bg{
+    width: 720px;
+    height: 660px;
+    transform: translate(-60%, -30%);
+}
+
+.blurr{
+    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,.53);
+    z-index: 1;
+    width: 0;
+    height: 0;
+    margin: 30px 0 20px 20px;
+
+    transition: 0.0001s ease;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.change-blurr{
+    width: 1000%;
+    height: 400vh;
+    transform: translate(-60%, -30%);
+}
+        
+.input-container {
+  width: 220px;
+  position: relative;
+  left: 70%;
+  top: -80px;
+
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% + 5px);
+  transform: translateY(calc(-50% - 5px));
+  cursor: pointer;
+}
+
+.input {
+  width: 100%;
+  height: 20px;
+  padding: 10px;
+  transition: .2s linear;
+  border: 2.5px solid black;
+  font-size: 14px;
+  letter-spacing: 2px;
+  border-radius: 8px;
+}
+
+.input:focus {
+ outline: none;
+ border-color: rgba(221,11,11,0.6);
+ background-color: #fff;
+ box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+.input-container:hover > .icon {
+  animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+  0%,
+  100% {
+    transform: translateY(calc(-50% - 5px)) scale(1);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 5px)) scale(1.1);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <div id="menu-bar" onclick="menuOnClick()">
+            <div id="bar1" class="bar"></div>
+            <div id="bar2" class="bar"></div>
+            <div id="bar3" class="bar"></div>
+            <div id="bar4" class="bar"></div>
+        </div>
+        <nav class="nav" id="nav">
+            <ul>
+                {% for category in categories %}
+                <li><a class="menu-li" href="{% url 'category_detail' category.id %}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <div class="menu-bg" id="menu-bg"></div>
+    <div class="blurr" id="blurr">
+        <!--filtro per blurrare-->
+    </div>
+    <h1 >Prodotti</h1>
+    <a class="view_cart" style='background: black' href="{% url 'view_cart' %}">Carrello <i id="icona_1" class='fas fa-shopping-cart'></i></a>
+    {% if user.is_authenticated %}
+    <a class="view_cart" style='font-size:20px; background: black' href="{% url 'logout' %}">Log Out <i id="icona_2" class='fas fa-home'></i></a>
+    {% else %}
+    <a class="view_cart" style='font-size:20px; background: black' href="{% url 'login' %}">Log In <i id="icona_3" class='fas fa-home'></i></a>
+    {% endif %}
+    <div class="input-container">
+        <input type="text" name="text" id="search-input" class="input" placeholder="search...">
+            <span class="icon" id="search-icon">
+                <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </span>
+    </div>
+    <div class="categories-container">
+        {% for category in categories %}
+        <h2>{{ category.name }}</h2>
+        <a class="view_all" href="{% url 'category_detail' category.id %}">Vedi Tutto</a>
+        <ul class="product-row">
+            {% for product in products %}
+            {% if product.category == category %}
+            <li>
+                <div class="product-box">
+                    <div class="product-image">
+                        <a id="prodotti_link" href="{% url 'product_detail' product.id %}"><img class="product-image" src="{{ product.image.url }}" alt="Product Image"></a>
+                    </div>
+                    <h3>{{ product.name }}</h3>
+                    <p class="price">Prezzo: €{{ product.price }}</p>
+                    <a  href="{% url 'product_detail' product.id %}">Dettagli</a>
+                </div>
+            </li>
+            {% endif %}
+            {% empty %}
+            {% if forloop.counter == 1 %}
+            <li>Nessun prodotto disponibile.</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% empty %}
+        <p>Nessuna categoria disponibile.</p>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/product_list.js' %}"></script>
+
+
+<footer>
+      <ul class="footer-links">
+          <li><a href="#">Help</a></li>
+          <li>
+              <div class="dot"></div>
+          </li>
+          <li><a href="#">Privacy</a></li>
+          <li>
+              <div class="dot"></div>
+          </li>
+          <li><a href="#">Accessibility</a></li>
+          <li>
+              <div class="dot"></div>
+          </li>
+          <li><a href="#">Cookies</a></li>
+      </ul>
+
+      <ul class="social-links">
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+      </ul>
+
+      <p>© Copyright 2023</p>
+
+  </footer>
+</body>
+</html>

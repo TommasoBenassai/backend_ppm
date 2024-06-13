@@ -1,0 +1,41 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  background-color: #cfe8cf;
+}
+
+h1 {
+  position: absolute;
+  top: 35.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+form {
+  width: 500px;
+  padding: 20px;
+  background-color: #cfcfcf;
+  border-radius: 5px;
+  list-style-type: none;
+}
+p{
+font-size: 20px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: green;
+  font-family: "Roboto", sans-serif;
+  list-style: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  }

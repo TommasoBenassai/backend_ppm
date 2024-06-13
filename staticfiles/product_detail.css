@@ -1,0 +1,65 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+/* Contenitore principale */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Stile per l'immagine */
+.container img {
+  margin-top: 70px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Stile per l'h1 */
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Stile per i paragrafi */
+p {
+  margin-bottom: 10px;
+  font-size: 27px;
+}
+
+/* Stile per il prezzo */
+p.price {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+/* Stile per i link */
+a {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+  padding: 12px 24px;
+  background-color: #4caf50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  width: 80%;
+}
+
+a:hover {
+  background-color: #fff;
+  color: #4caf50;
+  border-color: #4caf50;
+}

@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Effettua l'ordine</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'orders/orders.css' %}">
+    <style>
+        select#payment_method {
+        width: 40%;
+        padding: 8px;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+         border-radius: 4px;
+    }
+
+
+
+    </style>
+</head>
+<body style="background: #CFE8CF">
+
+    <h1>Riepilogo Carrello</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Prodotto</th>
+                <th>Quantità</th>
+                <th>Prezzo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>€{{ item.product.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Totale: €{{ total_price }}</h3>
+
+    <h2>Informazioni di pagamento e spedizione</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="payment_method">Metodo di pagamento:</label>
+        <select id="payment_method" name="payment_method" required>
+            <option value="paypal">Paypal</option>
+            <option value="credit_card">Carta di credito</option>
+            <option value="bank_transfer">Bonifico bancario</option>
+        </select>
+
+        <label for="shipping_address">Indirizzo di spedizione:</label>
+        <input type="text" id="shipping_address" name="shipping_address" required>
+
+        <input style="background: black; border: none"  type="submit" value="Effettua Ordine">
+    </form>
+</body>
+</html>

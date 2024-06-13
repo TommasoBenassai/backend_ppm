@@ -1,0 +1,143 @@
+body{
+background-color: #f2f2f2;
+}
+h1 {
+    color: #333;
+    font-size: 44px;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-left: 37%;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-    serif;
+}
+
+a.back-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px solid transparent;
+    top: -5px;
+    position: relative;
+    border-radius: 4px;
+}
+
+a.back-link:hover {
+    background-color: #fff;
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 24px;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    vertical-align: middle;
+}
+
+td.actions {
+    text-align: center;
+}
+
+td.actions form {
+    display: inline-block;
+}
+
+button {
+    padding: 8px 12px;
+    width: 50px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    left: 5%;
+    position: relative;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button.remove {
+    background-color: #f44336;
+}
+
+button.remove:hover {
+    background-color: #d32f2f;
+}
+
+button.add {
+    background-color: #2196F3;
+}
+
+button.add:hover {
+    background-color: #1976d2;
+}
+
+p.totale {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 20px;
+    left: 10%;
+    position: relative;
+    font-weight: bold;
+}
+
+a.order-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    margin-left: 10px;
+    left: 60.5%;
+    position: relative;
+}
+
+a.order-link:hover {
+    background-color: #fff;
+    color: #4caf50; /* Inverte il colore della scritta con il colore del box */
+    border-color: #4caf50; /* Aggiunta del colore del bordo */
+}
+
+p.empty{
+  position: absolute;
+  top: 17%;
+  left: 40%;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+
+}
