@@ -8,3 +8,5 @@ Log-in già creato:
 
 Username: admin                           
 Password: admin
+
+Per il deploy ho utilizzato Render che, però, dopo un periodo di inattività rende il sito offline. Il caricamento può richiedere qualche minuto.
